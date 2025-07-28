@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 
 namespace MovieMatcher.Domain.Entities
 {
-    public class WatchHistory
+
+    public class MovieMatch
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
-        public AppUser User { get; set; }
+        public int User1Id { get; set; }
+        public AppUser User1 { get; set; }
+
+        public int User2Id { get; set; }
+        public AppUser User2 { get; set; }
 
         public int MovieId { get; set; }
         public Movie Movie { get; set; }
 
-        public DateTime WatchedAt { get; set; } = DateTime.UtcNow;
+        public DateTime MatchedOn { get; set; } = DateTime.UtcNow;
     }
+
 }

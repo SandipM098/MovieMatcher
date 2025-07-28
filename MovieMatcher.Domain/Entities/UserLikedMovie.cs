@@ -14,6 +14,6 @@ namespace MovieMatcher.Domain.Entities
         public int MovieId { get; set; }
         public Movie Movie { get; set; }
 
-        public DateTime LikedAt { get; set; }
+        public DateTime LikedAt { get; set; } = DateTime.UtcNow;
     }
 }

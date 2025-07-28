@@ -17,5 +17,10 @@ namespace MovieMatcher.Infrastructure
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<MovieGenre> MovieGenres { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<UserLikedMovie> UserLikedMovies { get; set; }  
+        public DbSet<WatchHistory> WatchHistories { get; set; }
+        public DbSet<Friendship> Friendships { get; set; }
+        public DbSet<MovieMatch> MovieMatches { get; set; }
     }
 }
