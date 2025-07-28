@@ -1,1 +1,10 @@
 .vs/
+*.suo
+*.user
+*.userosscache
+build/
+bld/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Bb]in/
+[Oo]bj/
