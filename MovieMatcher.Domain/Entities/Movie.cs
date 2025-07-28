@@ -18,5 +18,6 @@ namespace MovieMatcher.Domain.Entities
         public ICollection<UserLikedMovie> MovieLiked { get; set; }
         public ICollection<WatchHistory> MovieWatched { get; set; }
         public ICollection<MovieGenre> Genres { get; set; }
+
     }
 }

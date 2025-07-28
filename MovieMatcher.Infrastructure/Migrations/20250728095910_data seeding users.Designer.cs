@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieMatcher.Infrastructure;
 
@@ -11,9 +12,11 @@ using MovieMatcher.Infrastructure;
 namespace MovieMatcher.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250728095910_data seeding users")]
+    partial class dataseedingusers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,48 +111,6 @@ namespace MovieMatcher.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Action"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Comedy"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Drama"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Horror"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Romance"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Sci-Fi"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Thriller"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Fantasy"
-                        });
                 });
 
             modelBuilder.Entity("MovieMatcher.Domain.Entities.Movie", b =>
@@ -179,22 +140,6 @@ namespace MovieMatcher.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Movies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Overview = "A dream heist thriller.",
-                            ReleaseDate = new DateTime(2010, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Inception"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Overview = "A wild Vegas trip.",
-                            ReleaseDate = new DateTime(2009, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "The Hangover"
-                        });
                 });
 
             modelBuilder.Entity("MovieMatcher.Domain.Entities.MovieGenre", b =>
@@ -218,32 +163,6 @@ namespace MovieMatcher.Infrastructure.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("MovieGenres");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            GenreId = 1,
-                            MovieId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            GenreId = 2,
-                            MovieId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GenreId = 3,
-                            MovieId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            GenreId = 4,
-                            MovieId = 2
-                        });
                 });
 
             modelBuilder.Entity("MovieMatcher.Domain.Entities.UserLikedMovie", b =>

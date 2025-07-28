@@ -12,7 +12,7 @@ using MovieMatcher.Infrastructure;
 namespace MovieMatcher.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250728092230_init")]
+    [Migration("20250728093135_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -149,37 +149,6 @@ namespace MovieMatcher.Infrastructure.Migrations
                     b.ToTable("MovieGenres");
                 });
 
-            modelBuilder.Entity("MovieMatcher.Domain.Entities.MovieMatch", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("MatchedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("User1Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("User2Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
-
-                    b.HasIndex("User1Id");
-
-                    b.HasIndex("User2Id");
-
-                    b.ToTable("MovieMatches");
-                });
-
             modelBuilder.Entity("MovieMatcher.Domain.Entities.UserLikedMovie", b =>
                 {
                     b.Property<int>("Id")
@@ -256,33 +225,6 @@ namespace MovieMatcher.Infrastructure.Migrations
                     b.Navigation("Genre");
 
                     b.Navigation("Movie");
-                });
-
-            modelBuilder.Entity("MovieMatcher.Domain.Entities.MovieMatch", b =>
-                {
-                    b.HasOne("MovieMatcher.Domain.Entities.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MovieMatcher.Domain.Entities.AppUser", "User1")
-                        .WithMany()
-                        .HasForeignKey("User1Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MovieMatcher.Domain.Entities.AppUser", "User2")
-                        .WithMany()
-                        .HasForeignKey("User2Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-
-                    b.Navigation("User1");
-
-                    b.Navigation("User2");
                 });
 
             modelBuilder.Entity("MovieMatcher.Domain.Entities.UserLikedMovie", b =>

@@ -105,40 +105,6 @@ namespace MovieMatcher.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MovieMatches",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    User1Id = table.Column<int>(type: "int", nullable: false),
-                    User2Id = table.Column<int>(type: "int", nullable: false),
-                    MovieId = table.Column<int>(type: "int", nullable: false),
-                    MatchedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MovieMatches", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MovieMatches_AppUsers_User1Id",
-                        column: x => x.User1Id,
-                        principalTable: "AppUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MovieMatches_AppUsers_User2Id",
-                        column: x => x.User2Id,
-                        principalTable: "AppUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MovieMatches_Movies_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserLikedMovies",
                 columns: table => new
                 {
@@ -208,21 +174,6 @@ namespace MovieMatcher.Infrastructure.Migrations
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieMatches_MovieId",
-                table: "MovieMatches",
-                column: "MovieId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MovieMatches_User1Id",
-                table: "MovieMatches",
-                column: "User1Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MovieMatches_User2Id",
-                table: "MovieMatches",
-                column: "User2Id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UserLikedMovies_MovieId",
                 table: "UserLikedMovies",
                 column: "MovieId");
@@ -251,9 +202,6 @@ namespace MovieMatcher.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "MovieGenres");
-
-            migrationBuilder.DropTable(
-                name: "MovieMatches");
 
             migrationBuilder.DropTable(
                 name: "UserLikedMovies");

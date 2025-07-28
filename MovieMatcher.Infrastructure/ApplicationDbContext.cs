@@ -14,6 +14,12 @@ namespace MovieMatcher.Infrastructure
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            DbSeeder.SeedData(modelBuilder);
+        }
+
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<MovieGenre> MovieGenres { get; set; }
@@ -21,6 +27,5 @@ namespace MovieMatcher.Infrastructure
         public DbSet<UserLikedMovie> UserLikedMovies { get; set; }  
         public DbSet<WatchHistory> WatchHistories { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
-        public DbSet<MovieMatch> MovieMatches { get; set; }
     }
 }
