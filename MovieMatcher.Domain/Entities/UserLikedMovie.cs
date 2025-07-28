@@ -8,6 +8,7 @@ namespace MovieMatcher.Domain.Entities
 {
     public class UserLikedMovie
     {
+        public int Id { get; set; }
         public int UserId { get; set; }
         public AppUser User { get; set; }
 
