@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DotNet\\MovieMatcher.Shared\\MovieMatcher.Shared.csproj": {}
+    "D:\\DotNet\\MovieMatcher\\MovieMatcher.Shared\\MovieMatcher.Shared.csproj": {}
   },
   "projects": {
-    "D:\\DotNet\\MovieMatcher.Shared\\MovieMatcher.Shared.csproj": {
+    "D:\\DotNet\\MovieMatcher\\MovieMatcher.Shared\\MovieMatcher.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DotNet\\MovieMatcher.Shared\\MovieMatcher.Shared.csproj",
+        "projectUniqueName": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Shared\\MovieMatcher.Shared.csproj",
         "projectName": "MovieMatcher.Shared",
-        "projectPath": "D:\\DotNet\\MovieMatcher.Shared\\MovieMatcher.Shared.csproj",
+        "projectPath": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Shared\\MovieMatcher.Shared.csproj",
         "packagesPath": "C:\\Users\\reone\\.nuget\\packages\\",
-        "outputPath": "D:\\DotNet\\MovieMatcher.Shared\\obj\\",
+        "outputPath": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

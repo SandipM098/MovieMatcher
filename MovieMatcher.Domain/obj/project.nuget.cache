@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EeqsXlh1zqs=",
+  "dgSpecHash": "LzcXswKKpzY=",
   "success": true,
-  "projectFilePath": "D:\\DotNet\\MovieMatcher.Domain\\MovieMatcher.Domain.csproj",
+  "projectFilePath": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Domain\\MovieMatcher.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

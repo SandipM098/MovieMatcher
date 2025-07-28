@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DotNet\\MovieMatcher.API\\MovieMatcher.API.csproj": {}
+    "D:\\DotNet\\MovieMatcher\\MovieMatcher.API\\MovieMatcher.API.csproj": {}
   },
   "projects": {
-    "D:\\DotNet\\MovieMatcher.API\\MovieMatcher.API.csproj": {
+    "D:\\DotNet\\MovieMatcher\\MovieMatcher.API\\MovieMatcher.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DotNet\\MovieMatcher.API\\MovieMatcher.API.csproj",
+        "projectUniqueName": "D:\\DotNet\\MovieMatcher\\MovieMatcher.API\\MovieMatcher.API.csproj",
         "projectName": "MovieMatcher.API",
-        "projectPath": "D:\\DotNet\\MovieMatcher.API\\MovieMatcher.API.csproj",
+        "projectPath": "D:\\DotNet\\MovieMatcher\\MovieMatcher.API\\MovieMatcher.API.csproj",
         "packagesPath": "C:\\Users\\reone\\.nuget\\packages\\",
-        "outputPath": "D:\\DotNet\\MovieMatcher.API\\obj\\",
+        "outputPath": "D:\\DotNet\\MovieMatcher\\MovieMatcher.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
