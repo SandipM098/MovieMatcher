@@ -21,12 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MovieMatcher.Application\MovieMatcher.Application.csproj" />
     <ProjectReference Include="..\MovieMatcher.Domain\MovieMatcher.Domain.csproj" />
     <ProjectReference Include="..\MovieMatcher.Infrastructure\MovieMatcher.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

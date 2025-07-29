@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using MovieMatcher.Application.Interfaces;
+using MovieMatcher.Application.Services;
 using MovieMatcher.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,7 @@ options.UseSqlServer(
     builder.Configuration.GetConnectionString("Database")
 ));
 // Add services to the container.
+builder.Services.AddScoped<IUserServices, UserServices>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
