@@ -1,5 +1,18 @@
-function App() {
-  return <div className="App">Hello</div>;
-}
+import {Routes, Route, BrowserRouter } from "react-router-dom"
+import Home from "./pages/Home.jsx";
+import Register from "./pages/Register.jsx";
+import Login from "./pages/Login.jsx";
 
-export default App;
+export const App = () => {
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login/>}></Route>
+          <Route path="/register" element={<Register/>}></Route>
+          <Route path="/" element={<Home/>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+}
