@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import { FaFacebookSquare } from "react-icons/fa";
+import { SiGoogle } from "react-icons/si";
 
 const Login = () => {
   const [mobile, setMobile] = useState("");
@@ -16,12 +18,31 @@ const Login = () => {
           Watch anywhere. Cancel anytime.
         </div>
 
-        <div>
-          <div>Login with facebook</div>
-          <div>Login with Google</div>
+        <div className="justify-self-center mt-6">
+          <div className="flex items-center border border-blue-900 w-96 rounded-lg h-10 mb-3 cursor-pointer">
+            <div className="bg-blue-950 w-[25%] h-full flex items-center justify-center rounded-l-lg">
+              <FaFacebookSquare className="h-6 w-6 text-white" />
+            </div>
+            <div className="text-white h-full rounded-r-lg w-[75%] font-medium text-xl bg-blue-800 ">
+              <p className="text-center">Login with Facebook</p>
+            </div>
+          </div>
+          <div className="flex items-center border border-gray-500 w-96 rounded-lg h-10 cursor-pointer">
+            <div className="h-full w-[25%]  flex items-center justify-center rounded-l-lg bg-orange-800">
+              <SiGoogle className="h-5 w-5 text-white" />
+            </div>
+            <div className="text-white h-full rounded-r-lg w-[75%] font-medium text-xl bg-orange-700 ">
+              <p className="text-center">Login with Google</p>
+            </div>
+          </div>
         </div>
-        <span>or</span>
-        <div>
+
+        <div className="justify-self-center mt-3 mb-3 text-xl font-bold">
+          or
+        </div>
+
+        
+        <div className="justify-self-center">
           <form action="">
             <input
               type="text"
