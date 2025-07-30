@@ -41,23 +41,40 @@ const Login = () => {
           or
         </div>
 
-        
         <div className="justify-self-center">
           <form action="">
-            <input
-              type="text"
-              className="text-black"
-              onInput={(e) => setMobile(e.target.value)}
-              placeholder="Mobile No."
-            />
-            <br />
-            <input
-              type="text"
-              className="text-black"
-              onInput={(e) => setOtp(e.target.value)}
-              placeholder="OTP"
-            />
+            <div className="flex items-end gap-2 w-96 border-b border-[#8B8B8B] pb-1 mb-3">
+              <p className="text-[#8B8B8B] whitespace-nowrap ml-2">
+                Mobile No.
+              </p>
+              <input
+                type="text"
+                className="flex-1 text-black bg-transparent focus:outline-none"
+                onInput={(e) => setMobile(e.target.value)}
+              />
+            </div>
+
+            <div className="flex items-end gap-2 w-96 border-b border-[#8B8B8B] pb-1 mb-3">
+              <p className="text-[#8B8B8B] whitespace-nowrap ml-2">OTP</p>
+              <input
+                type="text"
+                className="flex-1 text-black bg-transparent focus:outline-none"
+                onInput={(e) => setOtp(e.target.value)}
+              />
+            </div>
+
+            <div className="text-[#8B8B8B] whitespace-nowrap ml-3 mb-6">
+              Click to get one time password (OTP)
+            </div>
+
+            <div className="w-96 bg-white text-black flex items-center justify-center font-bold h-8">
+              <button type="submit">Login</button>
+            </div>
           </form>
+
+          <div className="w-96 bg-white text-black flex items-center justify-center font-bold h-8 mt-4">
+            <a href="#" className="cursor-pointer">Dont have an account? Register</a>
+          </div>
         </div>
       </div>
     </div>
