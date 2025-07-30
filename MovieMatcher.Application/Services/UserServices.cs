@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using MovieMatcher.Application.DTOs.Users;
 using MovieMatcher.Application.Interfaces;
 using MovieMatcher.Domain.Entities;
@@ -11,10 +12,11 @@ namespace MovieMatcher.Application.Services
     {
         private readonly ApplicationDbContext _context;
         // You can add a password hasher here if you want to hash passwords
-
+        private readonly PasswordHasher<AppUser> _passwordHasher;
         public UserServices(ApplicationDbContext context)
         {
             _context = context;
+            _passwordHasher = new PasswordHasher<AppUser>();
         }
 
         public async Task<string?> LoginUserAsync(LoginUserDto loginUserDto)
@@ -25,8 +27,8 @@ namespace MovieMatcher.Application.Services
             {
                 return "User not found";
             }
-
-            if (user.PasswordHash == loginUserDto.PasswordHash)
+            var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, loginUserDto.PasswordHash);
+            if (result == PasswordVerificationResult.Success)
             {
                 return user.UserName;
             }
@@ -46,9 +48,8 @@ namespace MovieMatcher.Application.Services
             {
                 UserName = registerUserDto.UserName,
                 Email = registerUserDto.Email,
-                PasswordHash = registerUserDto.PasswordHash 
             };
-
+            newUser.PasswordHash = _passwordHasher.HashPassword(newUser, registerUserDto.PasswordHash);
             _context.AppUsers.Add(newUser);
             await _context.SaveChangesAsync();
 
