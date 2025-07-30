@@ -43,5 +43,25 @@ namespace MovieMatcher.API.Controllers
             var result = await _userServices.LoginUserAsync(loginUserDto);
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var result = await _userServices.DeleteUserByIdAsync(id);
+            if (result)
+            {
+                return Ok("User deleted successfully.");
+            }
+            else
+            {
+                return NotFound("User not found.");
+            }
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> Update([FromBody]  UpdateUserDto updateUserDto, [FromQuery] int id)
+        {
+            return null;
+        }
     }
 }

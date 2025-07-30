@@ -55,5 +55,22 @@ namespace MovieMatcher.Application.Services
 
             return true;
         }
+
+        public async Task<bool> DeleteUserByIdAsync(int id)
+        {
+            var user = await _context.AppUsers.FindAsync(id);
+            if (user == null)
+            {
+                return false;
+            }
+            _context.AppUsers.Remove(user);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public Task<string?> UpdateUserByIdAsync(int id, UpdateUserDto updateUserDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
