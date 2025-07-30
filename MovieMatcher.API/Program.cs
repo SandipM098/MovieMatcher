@@ -4,40 +4,46 @@ using MovieMatcher.Application.Services;
 using MovieMatcher.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ApplicationDbContext>(options => 
-options.UseSqlServer(
-    builder.Configuration.GetConnectionString("Database")
-));
-// Add services to the container.
+
+// 1. Configure Database
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("Database"))
+);
+
+// 2. Register Application Services
 builder.Services.AddScoped<IUserServices, UserServices>();
 
+// 3. Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
+
+// 4. Add MVC Controllers and Swagger
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// 5. Configure Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Enable CORS for the React app
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("AllowReactApp", policy =>
-//    {
-//        policy.WithOrigins("http://localhost:3000")
-//              .AllowAnyHeader()
-//              .AllowAnyMethod();
-//    });
-//});
-
 app.UseHttpsRedirection();
-//app.UseCors("AllowReactApp");
+
+app.UseCors("AllowReactApp");
+
 app.UseAuthorization();
 
 app.MapControllers();
