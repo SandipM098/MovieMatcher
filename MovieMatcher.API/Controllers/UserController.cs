@@ -8,14 +8,14 @@ namespace MovieMatcher.API.Controllers
     [Route("api/auth")]
     public class UserController : ControllerBase
     {
-        private readonly IUserServices _userServices;   
+        private readonly IUserServices _userServices;
         public UserController(IUserServices userServices)
         {
             _userServices = userServices;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register ([FromBody] RegisterUserDto registerUserDto)
+        public async Task<IActionResult> Register([FromBody] RegisterUserDto registerUserDto)
         {
             if (registerUserDto == null)
             {
@@ -59,9 +59,15 @@ namespace MovieMatcher.API.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody]  UpdateUserDto updateUserDto, [FromQuery] int id)
+        public async Task<IActionResult> Update([FromBody] UpdateUserDto updateUserDto, [FromQuery] int id)
         {
             return null;
         }
+
+        //[HttpGet("test")]
+        //public IActionResult Test()
+        //{
+        //    return Ok("Test successful");
+        //}
     }
 }
