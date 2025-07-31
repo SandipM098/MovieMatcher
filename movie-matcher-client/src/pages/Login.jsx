@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaFacebookSquare } from "react-icons/fa";
 import { SiGoogle } from "react-icons/si";
 import { useLogin } from "../auth/UserServiceHook/useLogin";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -69,7 +70,7 @@ const Login = () => {
               <p className="text-[#8B8B8B] whitespace-nowrap ml-2">Email</p>
               <input
                 type="email"
-                className="flex-1 text-black bg-transparent focus:outline-none"
+                className="flex-1 text-white bg-transparent focus:outline-none"
                 onInput={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -78,7 +79,7 @@ const Login = () => {
               <p className="text-[#8B8B8B] whitespace-nowrap ml-2">Password</p>
               <input
                 type="password"
-                className="flex-1 text-black bg-transparent focus:outline-none"
+                className="flex-1 text-white bg-transparent focus:outline-none"
                 onInput={(e) => setPassword(e.target.value)}
               />
             </div>
@@ -101,9 +102,9 @@ const Login = () => {
           </form>
 
           <div className="w-96 bg-white text-black flex items-center justify-center font-bold h-8 mt-4">
-            <a href="#" className="cursor-pointer">
+            <Link to="/register" className="cursor-pointer">
               Dont have an account? Register
-            </a>
+            </Link>
           </div>
         </div>
       </div>
