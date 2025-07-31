@@ -1,15 +1,37 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { FaFacebookSquare } from "react-icons/fa";
 import { SiGoogle } from "react-icons/si";
+import { useLogin } from "../auth/UserServiceHook/useLogin";
 
 const Login = () => {
-  const [mobile, setMobile] = useState("");
-  const [otp, setOtp] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { mutate, isPending, setServerError, serverError } = useLogin(); // ✅ Corrected usage
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      setServerError("Please fill in both fields.");
+      return;
+    }
+
+    mutate(
+      { Email: email, PasswordHash: password },
+      {
+        onError: (error) => {
+          setServerError(error?.message || "Login failed.");
+        },
+      }
+    );
+  };
+
   return (
     <div className="flex items-center justify-center bg-neutral-950 h-screen w-screen text-white">
       <div className="h-[80%] w-[80%] bg-gradient-to-b from-neutral-900 via-gray-600 to-black rounded-xl shadow-lg p-8">
         <div className="font-semibold text-6xl justify-self-center">
-          Unlimited movies, TV <br></br>
+          Unlimited movies, TV <br />
         </div>
         <div className="font-semibold text-4xl justify-self-center">
           shows and more
@@ -42,38 +64,46 @@ const Login = () => {
         </div>
 
         <div className="justify-self-center">
-          <form action="">
+          <form onSubmit={handleSubmit}>
             <div className="flex items-end gap-2 w-96 border-b border-[#8B8B8B] pb-1 mb-3">
-              <p className="text-[#8B8B8B] whitespace-nowrap ml-2">
-                Mobile No.
-              </p>
+              <p className="text-[#8B8B8B] whitespace-nowrap ml-2">Email</p>
               <input
-                type="text"
+                type="email"
                 className="flex-1 text-black bg-transparent focus:outline-none"
-                onInput={(e) => setMobile(e.target.value)}
+                onInput={(e) => setEmail(e.target.value)}
               />
             </div>
 
             <div className="flex items-end gap-2 w-96 border-b border-[#8B8B8B] pb-1 mb-3">
-              <p className="text-[#8B8B8B] whitespace-nowrap ml-2">OTP</p>
+              <p className="text-[#8B8B8B] whitespace-nowrap ml-2">Password</p>
               <input
-                type="text"
+                type="password"
                 className="flex-1 text-black bg-transparent focus:outline-none"
-                onInput={(e) => setOtp(e.target.value)}
+                onInput={(e) => setPassword(e.target.value)}
               />
             </div>
 
-            <div className="text-[#8B8B8B] whitespace-nowrap ml-3 mb-6">
+            <div className="text-[#8B8B8B] whitespace-nowrap ml-3 mb-2">
               Click to get one time password (OTP)
             </div>
 
+            {serverError && (
+              <div className="text-red-500 ml-3 text-sm mb-2">
+                {serverError}
+              </div>
+            )}
+
             <div className="w-96 bg-white text-black flex items-center justify-center font-bold h-8">
-              <button type="submit">Login</button>
+              <button type="submit" disabled={isPending}>
+                {isPending ? "Logging in..." : "Login"}
+              </button>
             </div>
           </form>
 
           <div className="w-96 bg-white text-black flex items-center justify-center font-bold h-8 mt-4">
-            <a href="#" className="cursor-pointer">Dont have an account? Register</a>
+            <a href="#" className="cursor-pointer">
+              Dont have an account? Register
+            </a>
           </div>
         </div>
       </div>
