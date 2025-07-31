@@ -11,12 +11,13 @@ namespace MovieMatcher.Application.Services
     public class UserServices : IUserServices
     {
         private readonly ApplicationDbContext _context;
-        // You can add a password hasher here if you want to hash passwords
         private readonly PasswordHasher<AppUser> _passwordHasher;
-        public UserServices(ApplicationDbContext context)
+        private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        public UserServices(ApplicationDbContext context, IJwtTokenGenerator jwtTokenGenerator)
         {
             _context = context;
             _passwordHasher = new PasswordHasher<AppUser>();
+            _jwtTokenGenerator = jwtTokenGenerator;
         }
 
         public async Task<string?> LoginUserAsync(LoginUserDto loginUserDto)
@@ -30,7 +31,8 @@ namespace MovieMatcher.Application.Services
             var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, loginUserDto.PasswordHash);
             if (result == PasswordVerificationResult.Success)
             {
-                return user.UserName;
+                var token = _jwtTokenGenerator.GenerateAccessToken(user);
+                return token;
             }
 
             return null;

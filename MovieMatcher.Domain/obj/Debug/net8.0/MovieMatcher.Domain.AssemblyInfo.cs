@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MovieMatcher.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8e6e56da8a2a10a9f17ec51dd5175f5ac73c43a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ecd0749d3c895c79ba8de68d2298cffa753be5a2")]
 [assembly: System.Reflection.AssemblyProductAttribute("MovieMatcher.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MovieMatcher.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

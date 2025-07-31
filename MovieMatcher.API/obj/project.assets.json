@@ -2094,7 +2094,8 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Microsoft.AspNetCore.Identity": "2.3.1",
-          "MovieMatcher.Infrastructure": "1.0.0"
+          "MovieMatcher.Infrastructure": "1.0.0",
+          "MovieMatcher.Shared": "1.0.0"
         },
         "compile": {
           "bin/placeholder/MovieMatcher.Application.dll": {}
@@ -2126,6 +2127,16 @@
         },
         "runtime": {
           "bin/placeholder/MovieMatcher.Infrastructure.dll": {}
+        }
+      },
+      "MovieMatcher.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/MovieMatcher.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MovieMatcher.Shared.dll": {}
         }
       }
     }
@@ -5661,6 +5672,11 @@
       "type": "project",
       "path": "../MovieMatcher.Infrastructure/MovieMatcher.Infrastructure.csproj",
       "msbuildProject": "../MovieMatcher.Infrastructure/MovieMatcher.Infrastructure.csproj"
+    },
+    "MovieMatcher.Shared/1.0.0": {
+      "type": "project",
+      "path": "../MovieMatcher.Shared/MovieMatcher.Shared.csproj",
+      "msbuildProject": "../MovieMatcher.Shared/MovieMatcher.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {

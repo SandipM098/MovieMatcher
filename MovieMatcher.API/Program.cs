@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MovieMatcher.Application.Interfaces;
 using MovieMatcher.Application.Services;
 using MovieMatcher.Infrastructure;
+using MovieMatcher.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +13,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         builder.Configuration.GetConnectionString("Database"))
 );
 
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+builder.Services.AddSingleton(sp =>
+    sp.GetRequiredService<IOptions<JwtSettings>>().Value);
+
 // 2. Register Application Services
 builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+
 
 // 3. Configure CORS
 builder.Services.AddCors(options =>

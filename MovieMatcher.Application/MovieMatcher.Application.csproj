@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieMatcher.Infrastructure\MovieMatcher.Infrastructure.csproj" />
+    <ProjectReference Include="..\MovieMatcher.Shared\MovieMatcher.Shared.csproj" />
   </ItemGroup>
 
 </Project>
