@@ -56,5 +56,17 @@ namespace MovieMatcher.API.Controllers
             }
             return Ok(genre);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var genre = await _genreService.DeleteGenreAsync(id);
+            if (genre != true)
+            {
+                return Conflict("Error deleting that genre");
+            }
+
+            return Ok("Successfully deleted");
+        }
     }
 }
