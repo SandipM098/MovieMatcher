@@ -13,7 +13,7 @@ namespace MovieMatcher.Application.Interfaces
         Task<Genre?> CreateNewGenreAsync(CreateGenreDto createGenreDto);
         Task<Genre?> GetGenreByIdAsync(int id);
         Task<IEnumerable<Genre>> GetAllGenresAsync();
-        Task<Genre?> UpdateGenreAsync(int id, string name);
+        Task<Genre?> UpdateGenreAsync(int id, UpdateGenreDto updateGenreDto);
         Task<bool> DeleteGenreAsync(int id);
     }
 }

@@ -68,5 +68,17 @@ namespace MovieMatcher.API.Controllers
 
             return Ok("Successfully deleted");
         }
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Update([FromRoute] int Id, [FromBody] UpdateGenreDto request)
+        {
+            var genre = await _genreService.UpdateGenreAsync(Id, request);
+            if (genre == null)
+            {
+                return Conflict("Error updating the genre");
+            }
+
+            return Ok(genre);
+        }
     }
 }

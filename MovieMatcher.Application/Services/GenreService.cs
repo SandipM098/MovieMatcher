@@ -71,7 +71,7 @@ namespace MovieMatcher.Application.Services
             return genre;
         }
 
-        public async Task<Genre?> UpdateGenreAsync(int id, string name)
+        public async Task<Genre?> UpdateGenreAsync(int id, UpdateGenreDto updateGenreDto)
         {
             var genre = await _context.Genres.FindAsync(id);
             if (genre == null)
@@ -79,7 +79,7 @@ namespace MovieMatcher.Application.Services
                 return null;
             }
 
-            genre.Name = name;
+            genre.Name = updateGenreDto.Name;
             await _context.SaveChangesAsync();
             return genre;
         }
