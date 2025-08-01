@@ -20,6 +20,7 @@ builder.Services.AddSingleton(sp =>
 // 2. Register Application Services
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+builder.Services.AddScoped<IGenreService, GenreService>();
 
 
 // 3. Configure CORS

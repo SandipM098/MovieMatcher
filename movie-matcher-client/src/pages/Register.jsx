@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { FaFacebookSquare } from "react-icons/fa";
 import { SiGoogle } from "react-icons/si";
 import { Link } from 'react-router-dom';
+import { useRegister } from '../auth/UserServiceHook/useRegister';
 
 const Register = () => {
   const [form, setForm] = useState({ UserName : '', Email: '', PasswordHash: '', ConfirmPassword: ''});
-  console.log(form);
+  const {mutate, isPending, setServerError, serverError} = useRegister();
   const handleChange = (e) => {
     setForm((prev)=> ({
       ...prev,
@@ -14,8 +15,17 @@ const Register = () => {
   }
 
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.prevent.default();
+    mutate({
+      form
+    }, 
+    {
+      onError: (error)=>{
+        setServerError(error?.message || 'Registration failed');
+      }
+    }
+    )
   }
   return (
     <div className="flex items-center justify-center bg-neutral-950 h-screen w-screen text-white">
@@ -101,8 +111,16 @@ const Register = () => {
               />
             </div>
 
+            {serverError && (
+              <div className="text-red-500 ml-3 text-sm mb-2">
+                {serverError}
+              </div>
+            )}
+
             <div className="w-96 bg-white text-black flex items-center justify-center font-bold h-8">
-              <button type="submit">Register</button>
+              <button type="submit" disabled={isPending}>
+                {isPending ? "Registering in..." : "Register"}
+              </button>
             </div>
           </form>
 

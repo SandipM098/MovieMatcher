@@ -8,7 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { mutate, isPending, setServerError, serverError } = useLogin(); // ✅ Corrected usage
+  const { mutate, isPending, setServerError, serverError } = useLogin();
 
   const handleSubmit = (e) => {
     e.preventDefault();
