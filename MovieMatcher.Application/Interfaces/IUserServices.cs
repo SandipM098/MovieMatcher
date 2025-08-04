@@ -1,4 +1,5 @@
 ﻿using MovieMatcher.Application.DTOs.Users;
+using MovieMatcher.Application.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,12 @@ namespace MovieMatcher.Application.Interfaces
 {
     public interface IUserServices
     {
-        Task<bool> RegisterUserAsync(RegisterUserDto registerUserDto);
+        Task<RegisterResponse> RegisterUserAsync(RegisterUserDto registerUserDto);
         Task<string?> LoginUserAsync(LoginUserDto loginUserDto);
 
         Task<bool> DeleteUserByIdAsync(int id);
 
         Task<string?> UpdateUserByIdAsync(int id, UpdateUserDto updateUserDto);
+        Task<bool> ConfirmEmailAsync(string email, string token);
     }
 }

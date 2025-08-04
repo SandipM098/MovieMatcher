@@ -13,6 +13,9 @@ namespace MovieMatcher.Domain.Entities
         public string Email { get; set; } 
         public string PasswordHash{ get; set; } 
         public string? ProfileImageUrl{ get; set; }
+           
+        public bool? EmailConfirmed {get; set;}
+        public string? EmailConfirmationToken { get; set; }
 
         // Navigation // One user can have many
         public ICollection<UserLikedMovie> LikedMovies { get; set; }

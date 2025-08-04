@@ -22,14 +22,7 @@ namespace MovieMatcher.API.Controllers
                 return BadRequest("Invalid user data.");
             }
             var result = await _userServices.RegisterUserAsync(registerUserDto);
-            if (result)
-            {
-                return Ok("User registered successfully.");
-            }
-            else
-            {
-                return Conflict("User already exists.");
-            }
+            return Ok(result);  
         }
 
 
@@ -69,5 +62,19 @@ namespace MovieMatcher.API.Controllers
         //{
         //    return Ok("Test successful");
         //}
+
+        [HttpGet("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail([FromQuery] string email, [FromQuery] string token)
+        {
+            var result = await _userServices.ConfirmEmailAsync(email, token);
+            if (result)
+            {
+                return Ok("Email confirmed successfully.");
+            }
+            else
+            {
+                return BadRequest("Invalid email or token.");
+            }
+        }
     }
 }

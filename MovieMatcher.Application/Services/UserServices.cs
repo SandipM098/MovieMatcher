@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using MovieMatcher.Application.DTOs.Users;
 using MovieMatcher.Application.Interfaces;
+using MovieMatcher.Application.Response;
 using MovieMatcher.Domain.Entities;
 using MovieMatcher.Infrastructure;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace MovieMatcher.Application.Services
@@ -38,24 +41,38 @@ namespace MovieMatcher.Application.Services
             return null;
         }
 
-        public async Task<bool> RegisterUserAsync(RegisterUserDto registerUserDto)
+        public async Task<RegisterResponse> RegisterUserAsync(RegisterUserDto registerUserDto)
         {
             var existingUser = await _context.AppUsers
                 .FirstOrDefaultAsync(u => u.Email == registerUserDto.Email);
 
             if (existingUser != null)
-                return false;
+            {
+                return new RegisterResponse(success: false, message: "User with that email already exists");
+            }
+
+            var token = Guid.NewGuid().ToString();
+
+            string emailConfirmationLink = $"https://localhost:7083/api/auth/confirm-email?email={registerUserDto.Email}&token={token}";
 
             var newUser = new AppUser
             {
                 UserName = registerUserDto.UserName,
                 Email = registerUserDto.Email,
+                EmailConfirmationToken = token,
+                EmailConfirmed = false,
             };
+
             newUser.PasswordHash = _passwordHasher.HashPassword(newUser, registerUserDto.PasswordHash);
+
             _context.AppUsers.Add(newUser);
             await _context.SaveChangesAsync();
 
-            return true;
+            return new RegisterResponse(
+                success: true,
+                message : "User registered successfully. Check your email to confirm.",
+                emailConfirmationLink : emailConfirmationLink
+            );
         }
 
         public async Task<bool> DeleteUserByIdAsync(int id)
@@ -74,5 +91,24 @@ namespace MovieMatcher.Application.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> ConfirmEmailAsync(string email, string token)
+        {
+            var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+            {
+                return false;
+            }
+            if (user.EmailConfirmationToken != token)
+            {
+                return false;
+            }
+            user.EmailConfirmed = true;
+            user.EmailConfirmationToken = null; 
+            await _context.SaveChangesAsync();
+            return true;
+
+        }
+
     }
 }
