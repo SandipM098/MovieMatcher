@@ -75,7 +75,7 @@ namespace MovieMatcher.Application.Services
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
             var encodedToken = HttpUtility.UrlEncode(token);
 
-            var confirmationLink = $"https://localhost:7083/api/auth/confirm-email?userId={newUser.Id}&token={encodedToken}";
+            var confirmationLink = $"https://localhost:7083/api/auth/confirm-email?email={newUser.Email}&token={encodedToken}";
 
             return new RegisterResponse(true, "User registered successfully. Check your email to confirm.", confirmationLink);
         }
@@ -97,9 +97,9 @@ namespace MovieMatcher.Application.Services
             throw new System.NotImplementedException();
         }
 
-        public async Task<bool> ConfirmEmailAsync(string userId, string token)
+        public async Task<bool> ConfirmEmailAsync(string email, string token)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByEmailAsync(email);
             if (user == null) return false;
 
             var decodedToken = HttpUtility.UrlDecode(token);
@@ -108,9 +108,15 @@ namespace MovieMatcher.Application.Services
             return result.Succeeded;
         }
 
-        public Task<bool> DeleteUserByIdAsync(int id)
+        public async Task<bool> DeleteUserByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return false;
+            }
+            var deleteResult = await _userManager.DeleteAsync(user);
+            return deleteResult.Succeeded;
         }
 
         public Task<string?> UpdateUserByIdAsync(int id, UpdateUserDto updateUserDto)

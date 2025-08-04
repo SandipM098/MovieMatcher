@@ -21,7 +21,7 @@ namespace MovieMatcher.Application.DTOs.Users
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please confirm your password")]
-        [Compare("PasswordHash", ErrorMessage = "Passwords do not match")]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; }
     }
 }
