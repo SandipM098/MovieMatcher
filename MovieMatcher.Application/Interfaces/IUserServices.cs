@@ -16,6 +16,9 @@ namespace MovieMatcher.Application.Interfaces
         Task<bool> DeleteUserByIdAsync(string? id);
 
         Task<bool> ConfirmEmailAsync(string email, string token);
-        Task<ResetPasswordResponse> ResetPasswordAsync(string email);
+
+        Task<ResetPasswordResponse> RequestResetPasswordAsync(string email);
+        Task<bool?> ResetPasswordAsync(ResetPasswordDto resetPasswordDto);
+
     }
 }

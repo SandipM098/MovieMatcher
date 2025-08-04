@@ -80,9 +80,19 @@ namespace MovieMatcher.API.Controllers
         [HttpPost("request-password-reset")]
         public async Task<IActionResult> RequestPasswordReset([FromBody] string email)
         {
-            var result = await _userServices.ResetPasswordAsync(email);
+            var result = await _userServices.RequestResetPasswordAsync(email);
             return Ok(result);
         }
 
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
+        {
+            if (resetPasswordDto == null)
+            {
+                return BadRequest("Invalid password reset data.");
+            }
+            var result = await _userServices.ResetPasswordAsync(resetPasswordDto);
+            return Ok(result);
+        }
     }
 }
