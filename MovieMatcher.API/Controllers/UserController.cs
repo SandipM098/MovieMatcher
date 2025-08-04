@@ -38,7 +38,7 @@ namespace MovieMatcher.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] string id)
         {
             var result = await _userServices.DeleteUserByIdAsync(id);
             if (result)

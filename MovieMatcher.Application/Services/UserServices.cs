@@ -80,7 +80,7 @@ namespace MovieMatcher.Application.Services
             return new RegisterResponse(true, "User registered successfully. Check your email to confirm.", confirmationLink);
         }
 
-        public async Task<bool> DeleteUserByIdAsync(string id)
+        public async Task<bool> DeleteUserByIdAsync(string? id)
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user == null)
@@ -92,11 +92,6 @@ namespace MovieMatcher.Application.Services
             return deleteResult.Succeeded;
         }
 
-        public Task<string?> UpdateUserByIdAsync(string id, UpdateUserDto updateUserDto)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public async Task<bool> ConfirmEmailAsync(string email, string token)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -106,22 +101,6 @@ namespace MovieMatcher.Application.Services
 
             var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
             return result.Succeeded;
-        }
-
-        public async Task<bool> DeleteUserByIdAsync(int id)
-        {
-            var user = await _userManager.FindByIdAsync(id.ToString());
-            if (user == null)
-            {
-                return false;
-            }
-            var deleteResult = await _userManager.DeleteAsync(user);
-            return deleteResult.Succeeded;
-        }
-
-        public Task<string?> UpdateUserByIdAsync(int id, UpdateUserDto updateUserDto)
-        {
-            throw new NotImplementedException();
         }
     }
 }

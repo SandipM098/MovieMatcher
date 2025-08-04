@@ -13,9 +13,8 @@ namespace MovieMatcher.Application.Interfaces
         Task<RegisterResponse> RegisterUserAsync(RegisterUserDto registerUserDto);
         Task<string?> LoginUserAsync(LoginUserDto loginUserDto);
 
-        Task<bool> DeleteUserByIdAsync(int id);
+        Task<bool> DeleteUserByIdAsync(string? id);
 
-        Task<string?> UpdateUserByIdAsync(int id, UpdateUserDto updateUserDto);
         Task<bool> ConfirmEmailAsync(string email, string token);
     }
 }
