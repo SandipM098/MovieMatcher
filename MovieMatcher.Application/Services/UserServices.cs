@@ -1,114 +1,121 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using MovieMatcher.Application.DTOs.Users;
 using MovieMatcher.Application.Interfaces;
 using MovieMatcher.Application.Response;
 using MovieMatcher.Domain.Entities;
 using MovieMatcher.Infrastructure;
-using System.Net.Http.Json;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace MovieMatcher.Application.Services
 {
     public class UserServices : IUserServices
     {
         private readonly ApplicationDbContext _context;
-        private readonly PasswordHasher<AppUser> _passwordHasher;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
-        public UserServices(ApplicationDbContext context, IJwtTokenGenerator jwtTokenGenerator)
+
+        public UserServices(
+            ApplicationDbContext context,
+            IJwtTokenGenerator jwtTokenGenerator,
+            UserManager<AppUser> userManager)
         {
             _context = context;
-            _passwordHasher = new PasswordHasher<AppUser>();
             _jwtTokenGenerator = jwtTokenGenerator;
+            _userManager = userManager;
         }
 
         public async Task<string?> LoginUserAsync(LoginUserDto loginUserDto)
         {
-            var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Email == loginUserDto.Email);
+            var user = await _userManager.FindByEmailAsync(loginUserDto.Email);
 
             if (user == null)
             {
                 return "User not found";
             }
-            var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, loginUserDto.PasswordHash);
-            if (result == PasswordVerificationResult.Success)
+
+            var passwordValid = await _userManager.CheckPasswordAsync(user, loginUserDto.Password);
+
+            if (!passwordValid)
             {
-                var token = _jwtTokenGenerator.GenerateAccessToken(user);
-                return token;
+                return "Invalid password";
             }
 
-            return null;
+            if (!user.EmailConfirmed)
+            {
+                return "Email not confirmed";
+            }
+
+            var token = _jwtTokenGenerator.GenerateAccessToken(user);
+            return token;
         }
 
         public async Task<RegisterResponse> RegisterUserAsync(RegisterUserDto registerUserDto)
         {
-            var existingUser = await _context.AppUsers
-                .FirstOrDefaultAsync(u => u.Email == registerUserDto.Email);
-
+            var existingUser = await _userManager.FindByEmailAsync(registerUserDto.Email);
             if (existingUser != null)
             {
-                return new RegisterResponse(success: false, message: "User with that email already exists");
+                return new RegisterResponse(false, "User with that email already exists");
             }
-
-            var token = Guid.NewGuid().ToString();
-
-            string emailConfirmationLink = $"https://localhost:7083/api/auth/confirm-email?email={registerUserDto.Email}&token={token}";
 
             var newUser = new AppUser
             {
                 UserName = registerUserDto.UserName,
-                Email = registerUserDto.Email,
-                EmailConfirmationToken = token,
-                EmailConfirmed = false,
+                Email = registerUserDto.Email
             };
 
-            newUser.PasswordHash = _passwordHasher.HashPassword(newUser, registerUserDto.PasswordHash);
+            var createResult = await _userManager.CreateAsync(newUser, registerUserDto.Password);
+            if (!createResult.Succeeded)
+            {
+                var errorMsg = string.Join("; ", createResult.Errors.Select(e => e.Description));
+                return new RegisterResponse(false, $"User creation failed: {errorMsg}");
+            }
 
-            _context.AppUsers.Add(newUser);
-            await _context.SaveChangesAsync();
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+            var encodedToken = HttpUtility.UrlEncode(token);
 
-            return new RegisterResponse(
-                success: true,
-                message : "User registered successfully. Check your email to confirm.",
-                emailConfirmationLink : emailConfirmationLink
-            );
+            var confirmationLink = $"https://localhost:7083/api/auth/confirm-email?userId={newUser.Id}&token={encodedToken}";
+
+            return new RegisterResponse(true, "User registered successfully. Check your email to confirm.", confirmationLink);
         }
 
-        public async Task<bool> DeleteUserByIdAsync(int id)
+        public async Task<bool> DeleteUserByIdAsync(string id)
         {
-            var user = await _context.AppUsers.FindAsync(id);
+            var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return false;
             }
-            _context.AppUsers.Remove(user);
-            await _context.SaveChangesAsync();
-            return true;
+
+            var deleteResult = await _userManager.DeleteAsync(user);
+            return deleteResult.Succeeded;
+        }
+
+        public Task<string?> UpdateUserByIdAsync(string id, UpdateUserDto updateUserDto)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<bool> ConfirmEmailAsync(string userId, string token)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) return false;
+
+            var decodedToken = HttpUtility.UrlDecode(token);
+
+            var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
+            return result.Succeeded;
+        }
+
+        public Task<bool> DeleteUserByIdAsync(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<string?> UpdateUserByIdAsync(int id, UpdateUserDto updateUserDto)
         {
             throw new NotImplementedException();
         }
-
-        public async Task<bool> ConfirmEmailAsync(string email, string token)
-        {
-            var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Email == email);
-            if (user == null)
-            {
-                return false;
-            }
-            if (user.EmailConfirmationToken != token)
-            {
-                return false;
-            }
-            user.EmailConfirmed = true;
-            user.EmailConfirmationToken = null; 
-            await _context.SaveChangesAsync();
-            return true;
-
-        }
-
     }
 }

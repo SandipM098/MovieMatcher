@@ -18,7 +18,7 @@ namespace MovieMatcher.Application.DTOs.Users
         [RegularExpression(
             @"^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=]).{6,100}$",
             ErrorMessage = "Password must contain at least one uppercase letter, one number, and one special character.")]
-        public string PasswordHash { get; set; }
+        public string Password { get; set; }
 
         [Required(ErrorMessage = "Please confirm your password")]
         [Compare("PasswordHash", ErrorMessage = "Passwords do not match")]

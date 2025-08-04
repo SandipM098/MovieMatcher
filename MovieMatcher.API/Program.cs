@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using MovieMatcher.Application.Interfaces;
 using MovieMatcher.Application.Services;
+using MovieMatcher.Domain.Entities;
 using MovieMatcher.Infrastructure;
 using MovieMatcher.Shared;
 
@@ -12,10 +14,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("Database"))
 );
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+{
+    options.SignIn.RequireConfirmedEmail = true;
+})
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 builder.Services.AddSingleton(sp =>
     sp.GetRequiredService<IOptions<JwtSettings>>().Value);
+
 
 // 2. Register Application Services
 builder.Services.AddScoped<IUserServices, UserServices>();
@@ -51,10 +60,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowReactApp");
-
+app.UseCors("AllowReactApp");   
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await ApplicationDbInitializer.SeedAsync(services);
+}
 
 app.Run();
