@@ -3,14 +3,21 @@
   "WorkspaceRootPath": "D:\\DotNet\\MovieMatcher\\MovieMatcher.API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{AFC761F3-EFAC-4D87-80B7-62459AE9962E}|MovieMatcher.API.csproj|d:\\dotnet\\moviematcher\\moviematcher.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFC761F3-EFAC-4D87-80B7-62459AE9962E}|MovieMatcher.API.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B30CEB3F-4D78-4CE4-A9A6-EA6813E8E04A}|..\\MovieMatcher.Application\\MovieMatcher.Application.csproj|d:\\dotnet\\moviematcher\\moviematcher.application\\services\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B30CEB3F-4D78-4CE4-A9A6-EA6813E8E04A}|..\\MovieMatcher.Application\\MovieMatcher.Application.csproj|d:\\dotnet\\moviematcher\\moviematcher.application\\interfaces\\iuserservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFC761F3-EFAC-4D87-80B7-62459AE9962E}|MovieMatcher.API.csproj|d:\\dotnet\\moviematcher\\moviematcher.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFC761F3-EFAC-4D87-80B7-62459AE9962E}|MovieMatcher.API.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B30CEB3F-4D78-4CE4-A9A6-EA6813E8E04A}|..\\MovieMatcher.Application\\MovieMatcher.Application.csproj|d:\\dotnet\\moviematcher\\moviematcher.application\\response\\resetpasswordresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFC761F3-EFAC-4D87-80B7-62459AE9962E}|MovieMatcher.API.csproj|d:\\dotnet\\moviematcher\\moviematcher.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFC761F3-EFAC-4D87-80B7-62459AE9962E}|MovieMatcher.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,40 +32,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserServices.cs",
-              "DocumentMoniker": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Application\\Services\\UserServices.cs",
-              "RelativeDocumentMoniker": "..\\MovieMatcher.Application\\Services\\UserServices.cs",
-              "ToolTip": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Application\\Services\\UserServices.cs",
-              "RelativeToolTip": "..\\MovieMatcher.Application\\Services\\UserServices.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAgwFUAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T10:56:39.008Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IUserServices.cs",
-              "DocumentMoniker": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Application\\Interfaces\\IUserServices.cs",
-              "RelativeDocumentMoniker": "..\\MovieMatcher.Application\\Interfaces\\IUserServices.cs",
-              "ToolTip": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Application\\Interfaces\\IUserServices.cs",
-              "RelativeToolTip": "..\\MovieMatcher.Application\\Interfaces\\IUserServices.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAiwA8AAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T10:56:22.824Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\DotNet\\MovieMatcher\\MovieMatcher.API\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
               "ToolTip": "D:\\DotNet\\MovieMatcher\\MovieMatcher.API\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAgwCoAAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAwwFgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T10:55:48.515Z",
+              "WhenOpened": "2025-08-04T11:14:28.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserServices.cs",
+              "DocumentMoniker": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Application\\Services\\UserServices.cs",
+              "RelativeDocumentMoniker": "..\\MovieMatcher.Application\\Services\\UserServices.cs",
+              "ToolTip": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Application\\Services\\UserServices.cs",
+              "RelativeToolTip": "..\\MovieMatcher.Application\\Services\\UserServices.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAcwG8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T11:09:42.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ResetPasswordResponse.cs",
+              "DocumentMoniker": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Application\\Response\\ResetPasswordResponse.cs",
+              "RelativeDocumentMoniker": "..\\MovieMatcher.Application\\Response\\ResetPasswordResponse.cs",
+              "ToolTip": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Application\\Response\\ResetPasswordResponse.cs",
+              "RelativeToolTip": "..\\MovieMatcher.Application\\Response\\ResetPasswordResponse.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAvwBEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T11:07:38.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IUserServices.cs",
+              "DocumentMoniker": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Application\\Interfaces\\IUserServices.cs",
+              "RelativeDocumentMoniker": "..\\MovieMatcher.Application\\Interfaces\\IUserServices.cs",
+              "ToolTip": "D:\\DotNet\\MovieMatcher\\MovieMatcher.Application\\Interfaces\\IUserServices.cs",
+              "RelativeToolTip": "..\\MovieMatcher.Application\\Interfaces\\IUserServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T11:06:59.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\DotNet\\MovieMatcher\\MovieMatcher.API\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\DotNet\\MovieMatcher\\MovieMatcher.API\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T11:05:40.046Z",
               "EditorCaption": ""
             }
           ]

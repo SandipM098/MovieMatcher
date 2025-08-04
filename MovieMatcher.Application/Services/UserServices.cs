@@ -102,5 +102,19 @@ namespace MovieMatcher.Application.Services
             var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
             return result.Succeeded;
         }
+
+        public async Task<ResetPasswordResponse> ResetPasswordAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return new ResetPasswordResponse(false, "User not found", email, null);
+            }
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var encodedToken = HttpUtility.UrlEncode(token);
+            var resetLink = $"https://localhost:7083/api/auth/reset-password?email={email}&token={encodedToken}";
+
+            return new ResetPasswordResponse(true, email, encodedToken, resetLink, message: "Password reset token generated successfully");
+        }
     }
 }

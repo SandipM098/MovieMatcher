@@ -22,7 +22,7 @@ namespace MovieMatcher.API.Controllers
                 return BadRequest("Invalid user data.");
             }
             var result = await _userServices.RegisterUserAsync(registerUserDto);
-            return Ok(result);  
+            return Ok(result);
         }
 
 
@@ -76,5 +76,13 @@ namespace MovieMatcher.API.Controllers
                 return BadRequest("Invalid email or token.");
             }
         }
+
+        [HttpPost("request-password-reset")]
+        public async Task<IActionResult> RequestPasswordReset([FromBody] string email)
+        {
+            var result = await _userServices.ResetPasswordAsync(email);
+            return Ok(result);
+        }
+
     }
 }
