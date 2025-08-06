@@ -30,14 +30,14 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center bg-neutral-950 h-screen w-screen text-white">
-      <div className="h-[80%] w-[80%] bg-gradient-to-b from-neutral-900 via-gray-600 to-black rounded-xl shadow-lg p-8">
-        <div className="font-semibold text-6xl justify-self-center">
+      <div className="lg:h-[80%] lg:w-[80%] h-screen w-screen bg-gradient-to-b from-neutral-900 via-gray-600 to-black rounded-xl shadow-lg p-8 md:p-14 sm:p-14">
+        <div className="font-semibold lg:text-6xl text-4xl justify-self-center">
           Unlimited movies, TV <br />
         </div>
         <div className="font-semibold text-4xl justify-self-center">
           shows and more
         </div>
-        <div className="text-3xl justify-self-center font-medium mt-5 tracking-wide">
+        <div className="text-3xl justify-self-center font-medium lg:mt-5 mt-3 tracking-wide">
           Watch anywhere. Cancel anytime.
         </div>
 
