@@ -9,7 +9,7 @@ import { FaRegUser } from "react-icons/fa";
 export const Header = () => {
   return (
     <>
-      <div className="flex bg-[#2B2B2B] w-screen items-center text-white p-4 justify-around">
+      <div className="flex bg-[#2B2B2B] w-screen items-center text-white p-3 justify-around sticky top-0">
         <nav className="w-[70%] ml-4">
           <ul className="list-none flex items-center justify-evenly">
             <li>
@@ -19,7 +19,7 @@ export const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to="#" className="cursor-pointer">
+              <Link to="/new" className="cursor-pointer">
                 <BiSolidVideos className="w-8 h-8 justify-self-center" />
                 NEW
               </Link>
@@ -48,7 +48,7 @@ export const Header = () => {
           <IoSearchOutline />
           <input
             type="text"
-            className="bg-[#2A2A2A] bg-transparent w-[70%]"
+            className="bg-[#2A2A2A] focus:outline-none w-[70%]"
             placeholder="Search for movie, tv, genre etc...."
           />
           <IoMic className="flex-end cursor-pointer" />
