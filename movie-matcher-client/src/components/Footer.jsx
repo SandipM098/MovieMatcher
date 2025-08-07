@@ -5,7 +5,7 @@ import { FaMasksTheater } from "react-icons/fa6";
 import { VscFolderLibrary } from "react-icons/vsc";
 import { FaRegUser } from "react-icons/fa";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="fixed bottom-0 w-full bg-[#2B2B2B] text-white z-50">
       <nav>
@@ -46,4 +46,3 @@ const Footer = () => {
   );
 };
 
-export default Footer;
