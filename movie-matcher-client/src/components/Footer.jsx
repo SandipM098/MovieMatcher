@@ -7,7 +7,7 @@ import { FaRegUser } from "react-icons/fa";
 
 export const Footer = () => {
   return (
-    <footer className="fixed bottom-0 w-full bg-[#2B2B2B] text-white z-50">
+    <footer className="fixed bottom-0 w-full bg-[#535353] text-white z-50">
       <nav>
         <ul className="flex justify-around items-center py-2">
           <li className="flex flex-col items-center text-xs">
