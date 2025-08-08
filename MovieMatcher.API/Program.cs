@@ -6,6 +6,7 @@ using MovieMatcher.Application.Services;
 using MovieMatcher.Domain.Entities;
 using MovieMatcher.Infrastructure;
 using MovieMatcher.Shared;
+using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,11 +27,20 @@ builder.Services.AddSingleton(sp =>
     sp.GetRequiredService<IOptions<JwtSettings>>().Value);
 
 
+//  TMBD dependency injection
+builder.Services.AddHttpClient("TmdbClient", client =>
+{
+    client.BaseAddress = new Uri("https://api.themoviedb.org/3/");
+    client.DefaultRequestHeaders.Accept.Clear();
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
+
 // 2. Register Application Services
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IGenreService, GenreService>();
-
+builder.Services.AddScoped<ITmdbService, TmdbService>();
 
 // 3. Configure CORS
 builder.Services.AddCors(options =>
@@ -43,6 +53,8 @@ builder.Services.AddCors(options =>
               .AllowCredentials();
     });
 });
+
+
 
 // 4. Add MVC Controllers and Swagger
 builder.Services.AddControllers();
@@ -57,6 +69,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 
